@@ -1,0 +1,106 @@
+{
+  "_comment": "Ka Mahina — Extended Moon Knowledge. Loaded by data/cultural-extensions.js. Add entries freely without touching main.js.",
+
+  "mahina_moolelo": [
+    {
+      "id": "navigator",
+      "title": "Ka Mahina as Navigator",
+      "text": "Hawaiian navigators carried the lunar calendar in their memory with the precision we carry phone numbers today. Each of the 30 nights had a name, a personality, and a specific set of conditions it created on the ocean. Hilo (night 1) brought the first thin crescent and the beginning of new tides. Hoku (night 15) brought the full moon's brilliant path across the water — beautiful but blinding to the star field. Kāne (night 27) brought the sacred thin crescent that balanced ocean visibility with star clarity — the navigator's preferred departure window."
+    },
+    {
+      "id": "tides",
+      "title": "Ka Mahina and the Tides",
+      "text": "The connection between Ka Mahina and the tides was understood with scientific precision by Hawaiian navigators thousands of years before Newton explained why. Spring tides (highest high, lowest low) occur at Hoku (full moon) and Muku/Hilo (new moon). Neap tides (moderate) occur at the quarter phases. A navigator timing a landing on a coral reef needed to know exactly which tidal condition awaited — the difference between a safe channel and a wrecked hull could be a matter of a few feet of water, determined entirely by the lunar phase."
+    },
+    {
+      "id": "planting",
+      "title": "Ka Mahina and Agriculture",
+      "text": "The Hawaiian lunar planting calendar was sophisticated and empirically derived over generations. Root crops (taro, sweet potato, yam) were planted in the waxing phase when energy was said to move downward into the roots. Above-ground crops were planted in the waning phase. The ʻOle nights (barren nights, days 7–10 and around day 21) were complete rest from agricultural work — a cyclic sabbath encoded in the sky. Modern permaculture practitioners in Hawaiʻi continue to use the lunar planting calendar alongside contemporary methods."
+    },
+    {
+      "id": "fishing",
+      "title": "Ka Mahina and Fishing",
+      "text": "Every Hawaiian fisherman knew the moon nights. Fish come to the surface on bright moon nights, drawn by the light and the plankton blooms it stimulates. Akua (night 14) and Hoku (night 15) — the full moon and the night before — were the great fishing nights. But the ʻOle nights were strictly observed as rest from major fishing. This was not superstition — the ʻOle nights correspond to neap tides when fish move less predictably. The Hawaiian fishing calendar was an empirically validated ecological management system encoded in cultural practice."
+    },
+    {
+      "id": "goddess",
+      "title": "Mahina the Goddess",
+      "text": "Mahina is both the moon itself and a goddess who inhabits it. In some traditions, she is a woman beating kapa cloth on the moon's surface — her rhythmic pounding echoes in the sound of waves. She is associated with women's cycles, with water, with the growth of all living things. Kahoʻāli'i, a deity of the moon and tides, rides with her. The moon is not a cold rock in Hawaiian cosmology — it is a living being with personality, moods, and relationships with the people below who track its journey."
+    }
+  ],
+
+  "cross_cultural_moon": [
+    {
+      "culture": "Māori / Polynesian",
+      "name": "Marama",
+      "lunar_calendar": "Maramataka",
+      "nights": 30,
+      "key_nights": "Rākaunui (full moon) — great fishing; Oike — rest",
+      "moolelo": "The Maramataka (literally 'turning of the moon') is the Māori lunar calendar that governed planting, fishing, gathering, and ceremony. Like the Hawaiian calendar, it divides the month into 30 named nights. The Maramataka was suppressed during colonization but has been actively revived since the 1990s. Its principles are now applied in Māori food production, fisheries management, and conservation — and validated against Western ecological science.",
+      "navigator_use": "Māori navigators used the moon for the same purposes as Hawaiian navigators — timing departures, reading tides, and using the moonlit path on the ocean as a directional guide"
+    },
+    {
+      "culture": "Kemet (Ancient Egypt)",
+      "name": "Iah / Khonsu",
+      "lunar_calendar": "Egyptian lunar calendar (civil calendar was solar)",
+      "nights": 30,
+      "key_nights": "Day 15 (full moon) sacred to Thoth; Day 1 (new moon) festival of Iah",
+      "moolelo": "The Egyptians maintained both a lunar calendar for religious festivals and a solar calendar for administrative purposes. Khonsu, the moon god, was a healer and protector who traversed the sky in a boat. His name means 'traveler.' Iah was the older moon deity, associated with time measurement. The lunar phases determined when major religious festivals were held — including the festivals of Osiris, which were astronomically linked to the annual Nile flood cycle.",
+      "navigator_use": "Egyptian navigators on the Nile and the Red Sea used the moon for nighttime orientation and tide prediction"
+    },
+    {
+      "culture": "Aboriginal Australian",
+      "name": "Varies by language group",
+      "lunar_calendar": "Ecological lunar calendars (varies by region)",
+      "nights": 29,
+      "key_nights": "Full moon — ceremony and gathering; dark moon — rest",
+      "moolelo": "Aboriginal Australians have some of the most ancient continuous astronomical knowledge on Earth. Different language groups have different moon beings and different lunar calendars, but all recognize the moon's role in regulating ecological cycles. The Yolŋu people of Arnhem Land associate the full moon with ceremonial gatherings. The waning moon signals the time to move camp before resources are depleted. These are not beliefs — they are land management protocols encoded in sky knowledge.",
+      "navigator_use": "Coastal Aboriginal peoples used lunar tides to time fishing and reef access with extraordinary precision"
+    },
+    {
+      "culture": "Arabic / Islamic",
+      "name": "Al-Qamar",
+      "lunar_calendar": "Hijri calendar (strictly lunar, 354 days)",
+      "nights": 29,
+      "key_nights": "Hilal (first crescent) — sighting begins the month; Badr (full moon) — celebration",
+      "moolelo": "The Islamic calendar is purely lunar — 12 lunar months of 29 or 30 days, totaling 354 days. This means Islamic holy months (Ramadan, Hajj season) migrate through all seasons of the solar year over a 33-year cycle. Arabic astronomers developed the 28 Lunar Mansions (Manāzil al-Qamar) — a system that divided the moon's path through the zodiac into 28 stations, each with weather, agricultural, and navigational associations. This system traveled to India (Nakshatra), China, and was adopted by navigators across the Old World.",
+      "navigator_use": "Arab navigators of the Indian Ocean used the Lunar Mansions to determine the moon's position relative to known stars — a sophisticated celestial positioning system"
+    },
+    {
+      "culture": "Chinese",
+      "name": "Yuè / Chang'e",
+      "lunar_calendar": "Chinese lunisolar calendar",
+      "nights": 29,
+      "key_nights": "Day 15 — Mid-Autumn Moon Festival (Zhōngqiū Jié); Day 1 — new month begins",
+      "moolelo": "The Mid-Autumn Moon Festival (Zhōngqiū Jié) celebrates the full moon of the eighth lunar month — the harvest moon. Chang'e, the moon goddess, lives in a palace on the moon with a jade rabbit who pounds immortality medicine. The festival celebrates family reunion, the harvest, and the beauty of the full moon. Mooncakes are shared. The Chinese lunisolar calendar adds a leap month periodically to keep the lunar calendar aligned with the solar year — a sophisticated astronomical solution to the 11-day difference between lunar and solar years.",
+      "navigator_use": "Chinese navigators used the moon's position among the 28 Lunar Mansions for nighttime positioning on ocean voyages"
+    },
+    {
+      "culture": "Vedic / Sanskrit",
+      "name": "Chandra / Soma",
+      "lunar_calendar": "Panchanga (Hindu lunisolar calendar)",
+      "nights": 30,
+      "key_nights": "Purnima (full moon) — sacred; Amavasya (new moon) — ancestor rites",
+      "moolelo": "In Vedic tradition, the moon god Chandra (also called Soma) drives his chariot across the sky pulled by white horses. He rules over the mind, emotions, and the growth of plants. The 27 Nakshatra (lunar mansions) are described as his 27 wives — each one the moon's home for approximately one night per month. This system, possibly the oldest formal lunar mansion system, divides the sky into 27 (or 28) segments and assigns each segment a name, deity, and set of astrological and agricultural meanings. The Nakshatra system influenced Arabic, Chinese, and Southeast Asian astronomical traditions.",
+      "navigator_use": "Indian Ocean navigators used the Nakshatra system for celestial positioning across the monsoon trade routes"
+    },
+    {
+      "culture": "Maya",
+      "name": "Ix Chel / Uh",
+      "lunar_calendar": "Tzolkin-Haab combined; lunar series in Long Count",
+      "nights": 29,
+      "key_nights": "Full moon — Ix Chel festivals; lunar eclipse — powerful omen",
+      "moolelo": "The Maya developed one of the most precise lunar calendars in the ancient world. Their Dresden Codex contains a lunar almanac tracking 405 lunations over 46 years, accurate to within minutes. They used a 6-month lunar cycle (alternating 29 and 30 days) that accurately predicted eclipses. Ix Chel, the moon goddess, was associated with medicine, weaving, childbirth, and water. Her jaguar aspects revealed the dark face of the moon — both nurturing and powerful.",
+      "navigator_use": "Maya seafarers in dugout canoes navigated the Caribbean using astronomical knowledge including lunar tracking"
+    },
+    {
+      "culture": "Greek / Western",
+      "name": "Selene / Luna",
+      "lunar_calendar": "Various city-state lunar calendars; Athenian calendar most documented",
+      "nights": 30,
+      "key_nights": "Noumenia (new moon) — festival and prayer; Dichomenia (full moon) — celebration",
+      "moolelo": "The Greeks had multiple moon deities across traditions: Selene (the moon personified, who drives the silver chariot), Artemis (whose arrows of moonlight governed animals and hunting), and Hecate (the dark moon, ruler of the underworld and magic). The Athenian calendar began each month with the new moon (Noumenia). Many of the most important Athenian festivals were tied to specific lunar phases. Aristophanes complained that Athens' calendar was out of sync with the moon, suggesting ongoing tension between the ideal (lunar) and the administrative (adjusted) calendar.",
+      "navigator_use": "Greek navigators used the moon for coastal navigation and timing seasonal voyages across the Mediterranean"
+    }
+  ]
+}

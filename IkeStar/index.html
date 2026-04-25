@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000000">
+<title>Ikeverse — Night Sky Observatory</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="loader">
+  <div id="loader-star">
+    <img src="/assets/images/ikestarP.png" alt="Ikeverse" id="loader-star-img">
+  </div>
+  <div id="loader-title">IKEVERSE</div>
+  <div id="loader-sub">Night Sky Observatory · Hawaiʻi 21°N</div>
+  <div id="loader-bar"><div id="loader-fill"></div></div>
+</div>
+
+<div id="cursor"></div>
+<div id="tooltip"></div>
+<div id="moon-glow"></div>
+
+<!-- THREE.js canvas is inserted here by JS -->
+
+<!-- ════════════════════════════════════════════════════
+     UNIFIED NAV BAR
+     Row 1: ← Ikeverse | title | time
+     Row 2: [mode tabs] | | [culture tabs]  ← one scroll strip
+════════════════════════════════════════════════════ -->
+<div id="topbar">
+
+  <!-- Row 1: branding -->
+  <div id="topbar-row1">
+    <a id="logo" href="cosmic-weave.html" title="Back to Ikeverse">
+      <div id="logo-icon-wrap">
+        <img src="/assets/images/ikestarP.png" alt="Ikeverse" id="logo-star-img">
+      </div>
+      <span id="logo-text">Ikeverse</span>
+    </a>
+    <div id="top-title">Ka Pānalāʻā Hōkū · <span id="observer-location">Hawaiʻi 21°N</span></div>
+    <div id="top-time">
+      <div id="time-display">--:--</div>
+      <div id="date-display" style="font-size:.44rem;opacity:.5;margin-top:1px;">-- --- ----</div>
+    </div>
+  </div>
+
+  <!-- Row 2: modes + divider + cultures (single scroll zone) -->
+  <div id="topbar-row2">
+
+    <div id="mode-bar">
+      <button class="mode-pill active" data-mode="explore">
+        <span class="mode-icon">🌌</span><span>Explore</span>
+      </button>
+      <button class="mode-pill" data-mode="story">
+        <span class="mode-icon">📜</span><span>Moʻolelo</span>
+      </button>
+      <button class="mode-pill" data-mode="navigate">
+        <span class="mode-icon">🧭</span><span>Navigate</span>
+      </button>
+      <button class="mode-pill" data-mode="tour">
+        <span class="mode-icon">✨</span><span>Tour</span>
+      </button>
+      <button class="mode-pill" data-mode="seasonal">
+        <span class="mode-icon">🌺</span><span>Seasons</span>
+      </button>
+    </div>
+
+    <div id="nav-divider"></div>
+
+    <div id="culture-switcher">
+      <button class="cult-btn active" data-culture="hawaiian">
+        <span class="cult-icon">🌺</span><span class="cult-label">Hawaiʻi</span>
+      </button>
+      <button class="cult-btn" data-culture="western">
+        <span class="cult-icon">⭐</span><span class="cult-label">Western</span>
+      </button>
+      <button class="cult-btn" data-culture="kemet">
+        <span class="cult-icon">𓇳</span><span class="cult-label">Kemet</span>
+      </button>
+      <button class="cult-btn" data-culture="polynesian">
+        <span class="cult-icon">🌊</span><span class="cult-label">Poly</span>
+      </button>
+      <button class="cult-btn" data-culture="aboriginal">
+        <span class="cult-icon">🦘</span><span class="cult-label">Aboriginal</span>
+      </button>
+      <button class="cult-btn" data-culture="ikeverse">
+        <span class="cult-icon">🔮</span><span class="cult-label">Ikeverse</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Seasonal badge ── -->
+<div id="seasonal-badge"><span>🌺</span><span id="seasonal-badge-text">Makahiki Season</span></div>
+
+<!-- ── Seasonal banner ── -->
+<div id="seasonal-banner">
+  <button id="seasonal-banner-close" onclick="document.getElementById('seasonal-banner').classList.remove('show')">✕</button>
+  <div id="seasonal-banner-title">Makahiki Season</div>
+  <div id="seasonal-banner-text">Ka Makaliʻi has risen in the east. The Makahiki season begins.</div>
+</div>
+
+<!-- ── Nav HUD ── -->
+<div id="nav-hud">
+  <div id="nav-crosshair"></div>
+  <div id="nav-bearing-display">Facing <span id="nav-house">ʻAKAU</span> · <span id="nav-deg">0°</span></div>
+  <div id="nav-stars-list"></div>
+</div>
+
+<!-- ── Cosmic weave transition overlay ── -->
+<div id="weave-overlay"></div>
+
+<!-- ── Story / Moʻolelo panel ── -->
+<div id="story-panel">
+  <div id="story-topbar" style="position:relative;">
+    <button id="story-back" onclick="closeStoryPanel()"><i class="fas fa-chevron-left"></i> Back</button>
+    <div id="story-culture-badge">Kanaka Maoli · Hawaiian Sky</div>
+    <div id="story-progress" style="width:0%"></div>
+  </div>
+  <div id="story-content"></div>
+</div>
+
+<!-- ── Guided tour card ── -->
+<div id="tour-card">
+  <div id="tour-step-num">STEP 1 OF 8</div>
+  <div id="tour-step-title">Welcome to Ka Pānalāʻā</div>
+  <div id="tour-step-text">You are standing on Earth at Hawaiʻi 21°N, looking up at the real night sky. Drag to look around.</div>
+  <div id="tour-controls">
+    <div id="tour-progress-dots"></div>
+    <button class="tour-btn" id="tour-skip" onclick="endTour()">Skip</button>
+    <button class="tour-btn primary" id="tour-next" onclick="tourNext()">Next →</button>
+  </div>
+</div>
+
+<!-- ── How To Use Modal ── -->
+<div id="howto-modal">
+  <div id="howto-card">
+    <div id="howto-head">
+      <div id="howto-title">KA PĀNALĀʻĀ AO — HOW TO USE</div>
+      <div id="howto-sub">Ikeverse Night Sky Observatory · Hawaiʻi 21°N</div>
+      <button id="howto-close" type="button">✕</button>
+    </div>
+    <div class="howto-steps">
+      <div class="howto-step"><div class="howto-step-icon">👁️</div><div class="howto-step-body"><div class="howto-step-title">LOOK AROUND THE SKY</div><div class="howto-step-desc"><span class="howto-step-kbd">Drag</span> anywhere on the sky to look around — left/right, up/down. You are standing on Earth at Hawaiʻi 21°N, looking up at the real night sky.</div></div></div>
+      <div class="howto-step"><div class="howto-step-icon">🔭</div><div class="howto-step-body"><div class="howto-step-title">ZOOM IN AND OUT</div><div class="howto-step-desc"><span class="howto-step-kbd">Scroll</span> with a mouse wheel, or <span class="howto-step-kbd">Pinch</span> on mobile to zoom into star fields. The + / − buttons also control zoom.</div></div></div>
+      <div class="howto-step"><div class="howto-step-icon">🌺</div><div class="howto-step-body"><div class="howto-step-title">SWITCH CULTURAL SKY LAYERS</div><div class="howto-step-desc">Use the <strong>culture buttons</strong> at the top (🌺 Hawaiʻi · ⭐ Western · 𓇳 Kemet · 🌊 Polynesian · 🦘 Aboriginal · 🔮 Ikeverse) to change how the same stars are named and connected according to different knowledge traditions.</div></div></div>
+      <div class="howto-step"><div class="howto-step-icon">✨</div><div class="howto-step-body"><div class="howto-step-title">CLICK STARS, PLANETS & THE MOON</div><div class="howto-step-desc">Tap any <strong>star</strong> to open its moʻolelo, navigation use, and cultural knowledge across traditions. Tap a <strong>planet</strong> for its Hawaiian names and visibility. Tap the <strong>Moon</strong> for its Hawaiian lunar night name and phase.</div></div></div>
+      <div class="howto-step"><div class="howto-step-icon">🗺️</div><div class="howto-step-body"><div class="howto-step-title">FORMATION FOCUS MODE</div><div class="howto-step-desc">After clicking a star, tap the <strong>"Formation Focus"</strong> button in the panel to zoom into the full constellation or star formation. Switch between cultural interpretations using the tabs. Tap <span class="howto-step-kbd">← Back</span> to return to the full sky.</div></div></div>
+      <div class="howto-step"><div class="howto-step-icon">🧭</div><div class="howto-step-body"><div class="howto-step-title">COMPASS OVERLAY & TIME</div><div class="howto-step-desc">Use <span class="howto-step-kbd">🧭</span> to overlay the Hawaiian Star Compass on the sky. Use <span class="howto-step-kbd">⏱</span> to scrub through time — watch the sky rotate as hours pass and see which stars rise or set.</div></div></div>
+    </div>
+    <div id="howto-footer">
+      <div id="howto-skip" onclick="closeHowTo()">Skip</div>
+      <button id="howto-start" onclick="closeHowTo()">Begin Exploration →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Formation Focus Mode ── -->
+<div id="formation-panel">
+  <div id="formation-topbar">
+    <button id="formation-back" type="button"><i class="fas fa-chevron-left"></i> Back to Sky</button>
+    <div id="formation-title-wrap">
+      <div id="formation-title-main">Formation</div>
+      <div id="formation-title-sub">Formation Focus Mode</div>
+    </div>
+  </div>
+  <div id="formation-content">
+    <div id="formation-canvas-wrap">
+      <canvas id="formation-canvas"></canvas>
+    </div>
+    <div id="formation-info-bar">
+      <div id="formation-cult-tabs"></div>
+      <div id="formation-moolelo-wrap"></div>
+      <div id="formation-nav-wrap" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Compass sky overlay ── -->
+<div id="compass-overlay" title="Click to dismiss">
+  <canvas id="sky-compass-canvas"></canvas>
+  <div style="position:absolute;bottom:8%;left:0;right:0;text-align:center;font-family:var(--orb);font-size:.52rem;letter-spacing:.14em;color:rgba(0,247,255,.3);pointer-events:none;">TAP TO DISMISS</div>
+</div>
+
+<div id="controls">
+  <div id="ctrl-left">
+    <button class="ctrl-btn" id="btn-grid" title="Alt/Az grid"><i class="fas fa-border-all"></i></button>
+    <button class="ctrl-btn active" id="btn-con" title="Constellation lines"><i class="fas fa-star-of-david"></i></button>
+    <button class="ctrl-btn active" id="btn-labels" title="Star labels"><i class="fas fa-tag"></i></button>
+    <div id="ctrl-divider"></div>
+    <button class="ctrl-btn" id="btn-milky" title="Milky Way"><i class="fas fa-cloud"></i></button>
+    <button class="ctrl-btn" id="btn-ground" title="Ground/Horizon"><i class="fas fa-layer-group"></i></button>
+  </div>
+  <div id="ctrl-hint">Drag to look · Pinch/scroll to zoom · Tap stars</div>
+  <div id="ctrl-right">
+    <button class="ctrl-btn" id="btn-compass-overlay" title="Overlay Hawaiian compass on sky"><i class="fas fa-compass"></i></button>
+    <button class="ctrl-btn" id="btn-gyro" title="Gyroscope — point phone at sky (mobile)" onclick="toggleGyro()" style="display:none"><i class="fas fa-rotate"></i></button>
+    <div class="ctrl-divider-v"></div>
+    <button class="ctrl-btn" id="btn-north" title="ʻAKAU — Face North" onclick="lookCardinal(0,0.1)">N</button>
+    <button class="ctrl-btn" id="btn-east"  title="HIKINA — Face East"  onclick="lookCardinal(Math.PI*0.5,0.1)">E</button>
+    <button class="ctrl-btn" id="btn-south" title="HEMA — Face South"   onclick="lookCardinal(Math.PI,0.1)">S</button>
+    <button class="ctrl-btn" id="btn-west"  title="KOMOHANA — Face West" onclick="lookCardinal(Math.PI*1.5,0.1)">W</button>
+    <button class="ctrl-btn" id="btn-zenith" title="Look up — Zenith"><i class="fas fa-arrow-up"></i></button>
+    <div class="ctrl-divider-v"></div>
+    <button class="ctrl-btn" id="btn-goto-moon" title="Go to Ka Mahina — The Moon" onclick="lookAtMoon()">☽</button>
+    <button class="ctrl-btn" id="btn-goto-sun"  title="Go to Ka Lā — The Sun"  onclick="lookAtSun()">☀</button>
+    <div class="ctrl-divider-v"></div>
+    <button class="ctrl-btn" id="btn-time" title="Time controls"><i class="fas fa-clock"></i></button>
+    <button class="ctrl-btn" id="btn-help" title="How to use"><i class="fas fa-circle-question"></i></button>
+    <button class="ctrl-btn" id="btn-admin" title="Admin — Knowledge Editor" onclick="window.open('admin.html','_blank')"><i class="fas fa-screwdriver-wrench"></i></button>
+  </div>
+</div>
+
+<!-- ── Compass widget ── -->
+<div id="compass-widget" title="Ka Pānalāʻā — Hawaiian Star Compass · Click to toggle overlay">
+  <div id="compass-inner">
+    <canvas id="compass-canvas" width="316" height="316"></canvas>
+    <div id="compass-label">Ka Pānalāʻā</div>
+    <div id="compass-look-dir"></div>
+  </div>
+</div>
+
+<!-- ── Time scrubber (hidden by default) ── -->
+<div id="time-panel" style="
+  position:fixed;bottom:72px;left:50%;transform:translateX(-50%);
+  z-index:150;display:none;align-items:center;gap:10px;
+  padding:10px 16px;border-radius:20px;
+  background:rgba(3,6,20,.92);border:1px solid rgba(0,247,255,.2);
+  backdrop-filter:blur(20px);min-width:280px;max-width:90vw;
+">
+  <button id="tp-play" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,247,255,.3);background:rgba(0,247,255,.08);color:rgba(0,247,255,.8);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;">▶</button>
+  <input id="tp-slider" type="range" min="-43200" max="43200" value="0" step="300"
+    style="flex:1;accent-color:rgba(0,247,255,.8);">
+  <span id="tp-label" style="font-family:Orbitron,monospace;font-size:.6rem;color:rgba(0,247,255,.6);min-width:36px;text-align:center;">NOW</span>
+  <button id="tp-reset" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,247,255,.2);background:rgba(0,247,255,.05);color:rgba(0,247,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;">↺</button>
+</div>
+
+<!-- ── Info panel ── -->
+<div id="info-panel" role="dialog" aria-label="Star information">
+  <div class="panel-handle"></div>
+  <button class="panel-close" id="panel-close-btn">✕</button>
+  <div class="panel-inner" id="panel-body"></div>
+</div>
+
+  <!-- Three.js (must load before main.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Application -->
+  <script src="js/main.js"></script>
+
+  <!-- Supabase config — add your project URL + anon key to activate -->
+  <script src="data/supabase-config.js"></script>
+
+  <!-- Cultural content extensions — add content here without touching main.js -->
+  <script src="data/cultural-extensions.js"></script>
+
+</body>
+</html>
